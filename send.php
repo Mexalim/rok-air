@@ -1,16 +1,22 @@
 <?php
 
+/**
+ * Get coordinates
+ */
+function get_string_between($string, $start, $end){
+  $string = ' ' . $string;
+  $ini = strpos($string, $start);
+  if ($ini == 0) return '';
+  $ini += strlen($start);
+  $len = strpos($string, $end, $ini) - $ini;
+  return substr($string, $ini, $len);
+}
+
+/**
+ * Form
+ */
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  function get_string_between($string, $start, $end){
-    $string = ' ' . $string;
-    $ini = strpos($string, $start);
-    if ($ini == 0) return '';
-    $ini += strlen($start);
-    $len = strpos($string, $end, $ini) - $ini;
-    return substr($string, $ini, $len);
-  }
-
-
+  
   if($_FILES['csv']['error'] == 0){
 
       $name = $_FILES['csv']['name'];
@@ -27,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
       if(in_array($mime, $allowed_mime) && is_uploaded_file($tmpName)) {
 
-        /* Map Rows and Loop Through Them */
+        // Map Rows and Loop Through Them 
         $rows   = array_map('str_getcsv', file($tmpName));
         $header = array_shift($rows);
         $csv    = array();
@@ -38,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $csv[] = array_combine($header, $row);
         }
         
-        //result
+        //build result array
         foreach ($csv as $v) {
           
           $coordinates_all = get_string_between($v['coordinates'], '(', ')');
@@ -62,6 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         } 
         
+        //check if old points file exist
         if($_FILES['points_old']['error'] == 0){
 
           //marge new and old array
