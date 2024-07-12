@@ -68,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           $text_type = $_FILES['points_old']['type'];
           $text_tmp_name = $_FILES['points_old']['tmp_name'];
 
-          // check the file is a csv
+          // check the file is a txt
           $text_finfo = finfo_open(FILEINFO_MIME_TYPE);
           $text_mime = finfo_file($text_finfo, $text_tmp_name);
           finfo_close($finfo);
@@ -94,6 +94,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header('Connection: close');
  
         echo json_encode($result, JSON_UNESCAPED_UNICODE);
+
+        exit();
 
       } else {
         http_response_code(404);
