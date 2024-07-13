@@ -97,7 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         //send file result
         header('Content-Disposition: attachment; filename="sample.txt"');
         header('Content-Type: text/plaintx'); # Don't use application/force-download - it's not a real MIME type, and the Content-Disposition header is sufficient
-        header('Content-Length: ' . strlen($result));
+        //header('Content-Length: ' . strlen($result));
         header('Connection: close');
  
         echo json_encode($result, JSON_UNESCAPED_UNICODE);
