@@ -25,8 +25,7 @@
                     $(this).addClass('btn-default').removeClass('btn-success');
                 }
 
-            });
-            
+            })
         })
     </script>
 </head>
@@ -34,7 +33,7 @@
 <body>
     
     <div class="container mt-3">
-        <div class="row justify-content-center">
+        <div class="row">
             <div class="col-md-4 mx-auto form-box">
 
                 <form action="send.php" method="post" enctype="multipart/form-data">
@@ -63,18 +62,7 @@
                       </div>
                 </form>
             </div>
-            <div class="col-md-4 mx-auto form-box">
-                <form action="create_kml.php" method="post" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label for="csv">Select csv file (only NAI zones)*</label>
-                        <input class="form-control form-control-lg" accept=".csv" id="formFileLg" name="csv" required type="file">
-                    </div>
-                    <div class="d-grid gap-2 mt-5">
-                        <button type="submit" id="critical_btn"
-                            class="btn btn-primary btn-lg btn-block">GET FILE</button>
-                    </div>
-                </form>
-            </div>
+            <p class="text-center text-secondary"><small>TG author: <a href="https:t.me/mexalim">@mexalim</a></small></p>
         </div>
     </div>
 
